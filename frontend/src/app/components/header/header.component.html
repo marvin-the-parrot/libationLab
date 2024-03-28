@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+
+  <div class="container-fluid justify-content-between">
+    <!-- Left elements -->
+    <div class="align-items-center col-lg-4 d-flex">
+      <a class="navbar-logo ml-lg-5" href="">
+        <img src="assets/images/logo.png" class="d-inline-block align-top rounded-circle larger-logo" alt="Logo">
+      </a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="authService.isLoggedIn()" routerLink="/cocktail" routerLinkActive="active">Cocktails</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="authService.isLoggedIn()" routerLink="/ingredient" routerLinkActive="active">Ingredients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="authService.isLoggedIn()" routerLink="/groups" routerLinkActive="active">Groups</a>
+        </li>
+      </ul>
+    </div>
+
+
+
+    <!-- Center elements -->
+    <div class="justify-content-center col-lg-4">
+      <div class="navbar-brand text-center">
+        <span class="navbar-text website-text">Dionysus Libation Lab</span>
+      </div>
+    </div>
+
+
+
+    <!-- Right elements -->
+    <ul class="navbar-nav align-items-center col-lg-4 justify-content-lg-end">
+      <li class="nav-item">
+        <a class="nav-link bell-nav-link" *ngIf="authService.isLoggedIn()" routerLink="/message" routerLinkActive="active">
+          <i class="bi bi-bell-fill custom-bell"></i>
+          <span class="badge-round" *ngIf="getUnreadMessageCount() > 0">{{getUnreadMessageCount()}}</span>
+          <span class="badge-round" *ngIf="getUnreadMessageCount() > 9">+</span>
+        </a>
+      </li>
+      <span class="navbar-text">Hello, {{username}}</span>
+      <li class="nav-item">
+        <a class="nav-link custom-nav-link" *ngIf="authService.isLoggedIn()" routerLink="/settings" routerLinkActive="active">
+          <i class="bi bi-person-circle custom-circle"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,10 @@
+
+// remove container padding and margin to make the app full screen
+.container_custom {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ECECEC;
+  font-family: Roboto, sans-serif;
+}

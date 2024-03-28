@@ -1,0 +1,40 @@
+<!-- thumbs for every group -->
+<div *ngIf="group !== null" class="grid-item">
+  <a [routerLink]="[group.id, 'detail']">
+    <span *ngIf="group.host.name === username" class="badge"> You are Host </span>
+    <span *ngIf="group.host.name !== username" class="badge"> You are Member </span>
+    <div class="p-2">
+      <h3 class="m-0">{{group.name}}</h3>
+      <span *ngIf="group.host.name === username" class="card-subtitle"> You are the host</span>
+      <span *ngIf="group.host.name !== username" class="card-subtitle"> The host is: {{group.host.name}}</span>
+    </div>
+    <div class="p-2">
+      <h5>Selected Cocktails:</h5>
+      <ul *ngIf="group.cocktails && group.cocktails.length > 0; else noCocktails" class="cocktails-list">
+        <!-- TODO: cocktail.name is not defined -->
+        <li *ngFor="let cocktail of group.cocktails">{{ cocktail.name }}</li>
+      </ul>
+      <ng-template #noCocktails>
+        <div class="noCocktails">
+          <p>There are currently no selected cocktails. <br><br></p>
+        </div>
+
+      </ng-template>
+    </div>
+  </a>
+  <div class="d-flex justify-content-between align-items-end">
+    <button *ngIf="group.host.name !== username" class="badge custom-button-del" (click)="leaveGroup()">Leave</button>
+    <button *ngIf="group.host.name === username" class="badge custom-button-edit" [routerLink]="[group.id, 'edit']">
+      Edit
+    </button>
+    <span class="d-flex align-items-center">Members: <span class="badge-round">{{group.members.length}}</span></span>
+  </div>
+
+</div>
+<!-- create new group -->
+<a *ngIf="group === null" routerLink="create">
+  <div class="grid-item d-flex align-items-center justify-content-center flex-column">
+    <h3>Create new group</h3>
+    <div class="bi-plus add-group-icon"></div>
+  </div>
+</a>

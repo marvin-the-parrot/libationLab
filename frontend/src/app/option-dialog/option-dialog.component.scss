@@ -1,0 +1,22 @@
+
+.dialog {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.option-btn {
+  text-align: left;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: none;
+}
+
+.option-btn:hover {
+  background-color: #d3d3d3;
+}
+
+.red-text {
+  color: red;
+  margin: 3px;
+}

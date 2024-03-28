@@ -1,0 +1,163 @@
+<app-header></app-header>
+
+<div class="grid-container">
+
+    <div class="left-container col-lg-3 col-md-3 col-sm-3 col-3">
+      <div class="header-left-container">
+        <h2>Your account</h2>
+      </div>
+      <ul class="menu">
+        <li>
+          <button type="button"
+                  (click)="setMode('AccountSettings')"
+                  [class.active]="currentMode === Modes.AccountSettings"
+                  class="menu-item">Account Settings</button>
+        </li>
+        <li>
+          <button type="button"
+                  (click)="setMode(Modes.Ingredients)"
+                  [class.active]="currentMode === Modes.Ingredients"
+                  class="menu-item">Your Ingredients</button>
+        </li>
+        <li>
+          <button type="button"
+                  (click)="setMode(Modes.Preferences)"
+                  [class.active]="currentMode === Modes.Preferences"
+                  class="menu-item">Your Preferences</button>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="currentMode === Modes.AccountSettings" class="middle-container col-lg-4 col-md-4 col-sm-4 col-4">
+      <div class="icon-user">
+        <i class="bi bi-person-circle custom-circle"></i>
+      </div>
+      <div class="user-details">
+        <div class="user-detail-box">
+          <label>Username:</label>
+          <div class="user-detail-text">{{username}}</div>
+        </div>
+        <div class="user-detail-box">
+          <label>Email:</label>
+          <div class="user-detail-text">{{email}}</div>
+        </div>
+      </div>
+
+      <div class="button-box">
+        <button type="button" (click)="logout()" class="btn btn-primary logout-btn">Sign out</button>
+        <div class="spacer"></div> <!-- Empty div to create space -->
+        <button type="button" (click)="deleteAccount()" class="btn btn-primary delete-account-btn">Delete Account</button>
+      </div>
+    </div>
+
+    <div *ngIf="currentMode === Modes.Ingredients" class="middle-container col-lg-4 col-md-4 col-sm-4 col-4">
+
+      <div class="search-container">
+        <div>
+          <label class="label-search">Search for ingredients</label>
+        </div>
+
+        <div class="flex-container">
+          <i class="bi bi-info-circle info" ngbPopover= "In your ingredients list you can add all the ingredients you have at home and want to use for cocktails" triggers="mouseenter:mouseleave">
+          </i>
+          <div class="wrapper">
+            <app-autocomplete
+              name="ingredientsSelection"
+              textInputClass="form-control"
+              [placeholderText]="'search for ingredients'"
+              [suggestions]="ingredientSuggestions"
+              [formatModel]="formatIngredient"
+              valueNeedsToMatchSuggestion="true"
+              [(ngModel)]="ingredient"
+            >
+            </app-autocomplete>
+            <button type="button" class="btn rounded-button" (click)="addIngredient(ingredient)">
+              <i class="bi bi-plus-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div *ngIf="currentMode === Modes.Preferences" class="middle-container col-lg-4 col-md-4 col-sm-4 col-4">
+
+    <div class="search-container">
+      <div>
+        <label class="label-search">Search for preferences</label>
+      </div>
+
+      <div class="flex-container">
+        <i class="bi bi-info-circle info" ngbPopover= "In your preferences list you can add all the preferences for your cocktails" triggers="mouseenter:mouseleave"></i>
+        <div class="wrapper">
+          <app-autocomplete
+            name="preferenceSelection"
+            textInputClass="form-control"
+            [placeholderText]="'search for preferences'"
+            [suggestions]="preferenceSuggestion"
+            [formatModel]="formatPreference"
+            valueNeedsToMatchSuggestion="true"
+            [(ngModel)]="preference"
+          >
+          </app-autocomplete>
+          <button type="button" class="btn rounded-button" (click)="addPreference(preference)">
+            <i class="bi bi-plus-circle"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div *ngIf="currentMode === Modes.AccountSettings" class="right-container col-lg-4 col-md-4 col-sm-4 col-4">
+    </div>
+
+    <div *ngIf="currentMode === Modes.Ingredients" class="right-container col-lg-4 col-md-4 col-sm-4 col-4">
+
+      <div class="ingredients-preference-container">
+
+        <div>
+          <p class="ingredient-preference-count">{{userIngredients.length}} Ingredients</p>
+        </div>
+
+
+
+        <div class="ingredient-preference-list">
+          <div *ngFor="let ingredient of userIngredients; index as i" class="ingredient-preference-item">
+            {{ ingredient.name }}
+            <i class="bi bi-dash-circle remove-item" (click)="removeIngredient(i)"></i>
+          </div>
+        </div>
+
+        <div class="container-safe-button">
+          <button type="button" class="btn btn-primary save-btn" (click)="saveIngredients()">Save</button>
+        </div>
+
+      </div>
+    </div>
+
+  <div *ngIf="currentMode === Modes.Preferences" class="right-container col-lg-4 col-md-4 col-sm-4 col-4">
+
+    <div class="ingredients-preference-container">
+
+      <div>
+        <p class="ingredient-preference-count">{{userPreferences.length}} Preferences</p>
+      </div>
+
+
+
+      <div class="ingredient-preference-list">
+        <div *ngFor="let preference of userPreferences; index as i" class="ingredient-preference-item">
+          {{ preference.name }}
+          <i class="bi bi-dash-circle remove-item" (click)="removePreference(i)"></i>
+        </div>
+      </div>
+
+      <div class="container-safe-button">
+        <button type="button" class="btn btn-primary save-btn" (click)="savePreference()">Save</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+

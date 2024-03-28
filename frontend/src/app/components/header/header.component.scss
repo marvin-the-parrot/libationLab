@@ -1,0 +1,82 @@
+.custom-navbar {
+  background-color: #6200EE;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.custom-navbar .navbar-logo {
+  margin-left: 20px; /* Add left padding */
+  margin-right: 40px;
+
+}
+
+.rounded-circle {
+  overflow: hidden; /* Hide the overflow for maintaining circle */
+}
+
+.larger-logo {
+  height: 70px; /* Set the desired height for the logo */
+  width: auto; /* Allow the width to adjust proportionally */
+}
+
+.custom-nav .nav-link {
+  margin-right: 24px;
+}
+
+
+.navbar-text {
+  //make text bold;
+  font-weight: bold;
+}
+
+.custom-circle {
+  font-size: 3em;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.custom-bell {
+  position: relative;
+  font-size: 1.5em;
+  margin-right: 24px;
+}
+
+.website-text {
+  font-size: 1.5em;
+  color: white;
+}
+
+.navbar-brand {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.custom-nav-link {
+  padding: 0 0;
+  margin-right: 12px;
+}
+
+.badge-round {
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  text-decoration: none;
+  background-color: red;
+  font-weight: bold;
+  height: 0.8em;
+  width: 0.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 0.6em;
+  color: white;
+  border: none;
+}
+
+.bell-nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
